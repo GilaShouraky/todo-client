@@ -1,0 +1,33 @@
+.fromlist {
+    display: flex;
+    width: 800px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+}
+
+.labellist {
+    display: flex;
+}
+
+.chekboxlist {
+    width: 25px;
+    height: 25px;
+}
+
+.namelist {
+    padding: 0 130px 0 130px;
+}
+
+.timeleftlist {
+    padding: 0 130px 0 130px;
+}
+
+.button{
+    padding: 5px;
+    border: 0px;
+    background-color: var(--button-color);
+    color: white;
+    border-radius: 5px;
+}
