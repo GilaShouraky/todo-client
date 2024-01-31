@@ -1,10 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './style.module.css'
 import axios from 'axios'
 
 export default function ListTask() {
+
+  const [task, setTask] = useState("")
+
   useEffect(() => {
-    axios.get('http://localhost:6555/listTask').then(res => console.log(res))
+    axios.get('http://localhost:6555/listTask')
+      .then(res => { setTask(res.data); console.log(task)})
   }, [])
 
   const onClickDeleteTask = (e) => {
@@ -13,13 +17,18 @@ export default function ListTask() {
   }
 
   return (
-    <form className={styles.fromlist}>
-      <label className={styles.labellist}>
-        <input type="checkbox" name="chekbox" className={styles.chekboxlist} />
-        <div className={styles.namelist}>{"name"}</div>
-        <div className={styles.timeleftlist}>{"time left"}</div>
-      </label>
-      <button onClick={onClickDeleteTask} className={styles.button}>Delete</button>
-    </form>
+    <div>
+      {task && task.map(t => {
+        return <form key={t.id} className={styles.fromlist}>
+          <label className={styles.labellist}>
+            <input type="checkbox" name="chekbox" className={styles.chekboxlist} />
+            <div className={styles.namelist}>{t.nameTask}</div>
+            <div className={styles.timeleftlist}>{"time left"}</div>
+          </label>
+          <button onClick={onClickDeleteTask} className={styles.button}>Delete</button>
+        </form>
+      }
+      )}
+    </div>
   )
 }
